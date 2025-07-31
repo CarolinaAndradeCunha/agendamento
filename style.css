@@ -111,6 +111,14 @@ main {
   display: none; /* só no desktop */
 }
 
+.msg-erro {
+  display: none;
+  margin-top: 0.5rem;
+  color: #d93025; /* vermelho alerta */
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
