@@ -1,16 +1,16 @@
-// Script de Agendamento com Serviços Escolhidos, Calendário e Formulário
+const servicosEscolhidos = JSON.parse(localStorage.getItem('servicosSelecionados')) || [];
 
-const servicosEscolhidos = [
-  { nome: 'Corte de cabelo', preco: 40 },
-  { nome: 'Manicure', preco: 25 },
-];
+if (servicosEscolhidos.length === 0) {
+  document.body.innerHTML = '<p style="text-align:center; margin-top:2rem;">Nenhum serviço selecionado. Por favor, volte e escolha algum serviço.</p>';
+  throw new Error('Nenhum serviço selecionado.');
+}
 
 const horariosDisponiveis = {
   '2025-08-01': ['09:00', '10:00', '11:00', '13:30', '15:00', '16:00'],
   '2025-08-02': ['09:00', '10:00', '11:00'],
 };
 
-const agendamentosFeitos = []; // Novo array para armazenar os horários ocupados
+const agendamentosFeitos = [];
 
 const calendarioInput = document.getElementById('calendario');
 const horarioSelect = document.getElementById('horario');
@@ -35,7 +35,6 @@ function atualizarHorarios() {
   const dataSelecionada = calendarioInput.value;
   const horarios = horariosDisponiveis[dataSelecionada] || [];
 
-  // Filtra horários já agendados para essa data
   const ocupados = agendamentosFeitos
     .filter(ag => ag.data === dataSelecionada)
     .map(ag => ag.horario);
@@ -67,7 +66,6 @@ form.addEventListener('submit', (e) => {
   const horario = horarioSelect.value;
   const pagamento = document.querySelector('input[name="pagamento"]:checked').value;
 
-  // Adiciona agendamento ao array de agendamentos feitos
   agendamentosFeitos.push({ data, horario });
 
   resultado.innerHTML = `<p>Agendamento realizado com sucesso para <strong>${data}</strong> às <strong>${horario}</strong>.</p>
@@ -78,5 +76,5 @@ form.addEventListener('submit', (e) => {
     <p>O pagamento será feito no dia do atendimento. Esperamos você lá!</p>`;
 
   form.reset();
-  atualizarHorarios(); // Atualiza os horários após resetar
+  atualizarHorarios();
 });
