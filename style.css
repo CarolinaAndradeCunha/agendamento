@@ -95,6 +95,33 @@ main {
   gap: 1rem;
 }
 
+/* Tornar lista de serviços sempre visível (mobile e desktop) */
+.servicos-selecionados {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex; /* Antes era none no mobile */
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.servicos-selecionados li {
+  background-color: #eee;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servicos-selecionados li button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 .btn-agendar {
   padding: 1rem;
   background-color: var(--cor-principal);
@@ -103,12 +130,11 @@ main {
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.servicos-selecionados {
-  list-style: none;
-  padding-left: 1rem;
-  display: none; /* só no desktop */
+.btn-agendar:hover {
+  background-color: #005fcc;
 }
 
 .msg-erro {
@@ -145,11 +171,6 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-  }
-
-  .servicos-selecionados {
-    display: block;
-    margin-top: 1rem;
   }
 }
 
@@ -233,33 +254,6 @@ footer {
   cursor: pointer;
   font-size: 1rem;
   text-align: left;
-}
-
-/* Lista de serviços escolhidos (agendamento dinâmico) */
-.servicos-selecionados {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.servicos-selecionados li {
-  background-color: #eee;
-  padding: 0.5rem;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.servicos-selecionados li button {
-  background: none;
-  border: none;
-  color: red;
-  font-size: 1.2rem;
-  cursor: pointer;
 }
 
 /* Modal para imagem ampliada */
