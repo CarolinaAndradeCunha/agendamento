@@ -7,13 +7,13 @@ if (servicosEscolhidos.length === 0) {
   throw new Error('Nenhum serviço selecionado.');
 }
 
-// Simulação de horários disponíveis (pode ajustar conforme quiser)
+// Simulação de horários disponíveis (ajuste conforme necessidade)
 const horariosDisponiveis = {
   '2025-08-01': ['09:00', '10:00', '11:00', '13:30', '15:00', '16:00'],
   '2025-08-02': ['09:00', '10:00', '11:00'],
 };
 
-// Simulação de agendamentos já feitos para bloqueio de horários
+// Simulação de agendamentos já feitos para bloquear horários
 const agendamentosFeitos = [];
 
 const calendarioInput = document.getElementById('calendario');
@@ -29,19 +29,18 @@ function atualizarListaServicos() {
   let total = 0;
   servicosEscolhidos.forEach(servico => {
     const li = document.createElement('li');
-    li.textContent = `${servico.nome} - R$ ${servico.preco}`;
+    li.textContent = `${servico.nome} - R$ ${Number(servico.preco).toFixed(2)}`;
     listaServicos.appendChild(li);
     total += Number(servico.preco);
   });
   totalSpan.textContent = `R$ ${total.toFixed(2)}`;
 }
 
-// Atualiza horários disponíveis conforme data e bloqueia os ocupados
+// Atualiza horários disponíveis conforme data, bloqueando ocupados
 function atualizarHorarios() {
   const dataSelecionada = calendarioInput.value;
   const horarios = horariosDisponiveis[dataSelecionada] || [];
 
-  // Horários ocupados para a data
   const ocupados = agendamentosFeitos
     .filter(ag => ag.data === dataSelecionada)
     .map(ag => ag.horario);
@@ -87,8 +86,8 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  if (!data || !horario) {
-    alert('Por favor, selecione data e horário.');
+  if (!data || !horario || horario === 'Nenhum horário disponível') {
+    alert('Por favor, selecione data e horário válidos.');
     return;
   }
 
@@ -106,6 +105,6 @@ form.addEventListener('submit', (e) => {
   form.reset();
   atualizarHorarios();
 
-  // Limpar os serviços selecionados do localStorage para novo agendamento
+  // Limpar serviços selecionados para próximo agendamento
   localStorage.removeItem('servicosSelecionados');
 });
