@@ -17,23 +17,23 @@
     </section>
 
     <form id="form-agendamento">
-      <label for="calendario">Escolha o dia:</label>
+      <label for="calendario" class="required">Escolha o dia:</label>
       <input type="date" id="calendario" required />
 
-      <label for="horario">Escolha o horário:</label>
+      <label for="horario" class="required">Escolha o horário:</label>
       <select id="horario" required></select>
 
-      <label for="nome">Nome completo:</label>
+      <label for="nome" class="required">Nome completo:</label>
       <input type="text" id="nome" placeholder="Seu nome" required />
 
-      <label for="telefone">Telefone:</label>
+      <label for="telefone" class="required">Telefone:</label>
       <input type="text" id="telefone" placeholder="(00) 00000-0000" required />
 
       <label for="email">E-mail (opcional):</label>
       <input type="email" id="email" placeholder="exemplo@email.com" />
 
       <fieldset>
-        <legend>Forma de pagamento:</legend>
+        <legend class="required">Forma de pagamento:</legend>
         <label><input type="radio" name="pagamento" value="Dinheiro" required /> Dinheiro</label>
         <label><input type="radio" name="pagamento" value="PIX" /> PIX</label>
         <label><input type="radio" name="pagamento" value="Cartão Débito" /> Cartão Débito</label>
