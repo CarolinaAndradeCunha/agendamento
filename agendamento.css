@@ -38,7 +38,7 @@ ul {
 }
 
 ul li {
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--cor-borda);
 }
 
@@ -46,6 +46,13 @@ label {
   display: block;
   margin-top: 1rem;
   font-weight: bold;
+}
+
+/* Adiciona * para campos obrigatórios */
+label.required::after,
+legend.required::after {
+  content: " *";
+  color: var(--cor-destaque);
 }
 
 input[type="text"],
@@ -58,6 +65,16 @@ select {
   border: 1px solid var(--cor-borda);
   border-radius: 6px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 5px var(--cor-destaque);
 }
 
 input[type="radio"] {
